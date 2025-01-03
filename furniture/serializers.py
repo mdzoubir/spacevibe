@@ -7,21 +7,15 @@ from rooms.serializers import RoomSerializer
 class FurnitureCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = FurnitureCategory
-        fields = ['id', 'name', 'description']
+        fields = '__all__'
 
 
 class FurnitureSerializer(serializers.ModelSerializer):
-    category = FurnitureCategorySerializer(read_only=True)
-
     class Meta:
         model = Furniture
-        fields = ['id', 'category', 'name', 'width', 'height', 'depth', 'image', 'price']
-
+        fields = '__all__'
 
 class FurniturePlacementSerializer(serializers.ModelSerializer):
-    room = RoomSerializer(read_only=True)
-    furniture = FurnitureSerializer(read_only=True)
-
     class Meta:
         model = FurniturePlacement
-        fields = ['id', 'room', 'furniture', 'x_position', 'y_position', 'rotation', 'created_at']
+        fields = '__all__'
