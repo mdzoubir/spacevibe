@@ -4,6 +4,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 from users.serializers import UserSerializer
 
 # Dynamically get the user model
@@ -18,6 +20,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+class EmailTokenObtainPairView(TokenObtainPairView):
+    username_field = 'email'
+
 class RegisterView(APIView):
     """
     API endpoint for user registration. Open to anyone.
@@ -29,4 +34,10 @@ class RegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {
+                "detail": "Invalid data",
+                "errors": serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
