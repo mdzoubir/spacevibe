@@ -8,25 +8,17 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+.venv/
 build/
-develop-eggs/
 dist/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 *.egg-info/
-.installed.cfg
 *.egg
-.eggs/
 
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Pycharm project files
+# PyCharm project files
 .idea/
 
 # PyTest cache
@@ -41,13 +33,16 @@ coverage.xml
 .cache/
 .python-version
 
-# VirtualEnv
-.venv/
-
-# Developers
+# IDE-specific files
+.vscode/
 *.sw*
-manage.py
 .DS_Store
 
-# example database
+# Django-related
+migrations/
+staticfiles/
+media/
+
+# Database or example files
+db.sqlite3
 drf_example
